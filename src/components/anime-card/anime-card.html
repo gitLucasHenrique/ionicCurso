@@ -1,0 +1,12 @@
+<!-- Generated template for the AnimeCardComponent component -->
+<ion-card *ngIf="anime">
+    <ion-card-content>
+      <ion-card-title>
+        {{anime.title}}
+      </ion-card-title>
+        <p>{{anime.customer}} </p>
+        <p>{{anime.company}} </p>
+        <p>{{anime.createdAt | date:'dd/MM/yyyy'}} </p>
+        <img *ngIf="showDetails" src="{{anime.image}}">
+    </ion-card-content>
+  </ion-card>

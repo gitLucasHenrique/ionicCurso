@@ -3,21 +3,28 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>List</ion-title>
+    <ion-title>Lista de Animes</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-icon [name]="item.icon" item-start></ion-icon>
-      {{item.title}}
-      <div class="item-note" item-end>
-        {{item.note}}
-      </div>
-    </button>
-  </ion-list>
-  <div *ngIf="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.title}}</b>
-  </div>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <!--
+    <ion-card *ngFor="let anime of list" (click)="onClick(anime)">
+      <ion-card-content>
+        <ion-card-title>
+          {{anime.title}}
+          </ion-card-title>
+          <p>{{anime.customer}} </p>
+          <p>{{anime.mainChar}} </p>
+      </ion-card-content>
+    </ion-card>
+    -->
+  <anime-card [anime]="anime" *ngFor="let anime of list" (click)="onClick(anime)"></anime-card>
+  
+  <ion-fab right bottom (click)="add()">
+      <button ion-fab color="secondary"><ion-icon name="md-add"></ion-icon></button>
+  </ion-fab>
 </ion-content>
